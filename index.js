@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const dotenv = require("dotenv");
 const mongoose = require("mongoose");
+const cors = require("cors");
 // ! IMPORT ROUTES
 const authRouter = require("./routes/auth");
 const studentRouter = require("./routes/students");
@@ -20,6 +21,7 @@ mongoose.connect(
 
 // ! MIDDLEWARE
 app.use(express.json());
+app.use(cors());
 
 // ! ROUTE MIDDLEWARE
 app.use("/api/user", authRouter);
