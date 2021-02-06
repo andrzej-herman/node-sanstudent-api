@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const mongoose = require("mongoose");
 // ! IMPORT ROUTES
 const authRouter = require("./routes/auth");
+const studentRouter = require("./routes/students");
 
 // ! ENVIRONMENT VARIABLES
 dotenv.config();
@@ -22,6 +23,7 @@ app.use(express.json());
 
 // ! ROUTE MIDDLEWARE
 app.use("/api/user", authRouter);
+app.use("/api/student", studentRouter);
 
 // ! LISTEN
 app.listen(3000, () => console.log("Server is running on port 3000"));
