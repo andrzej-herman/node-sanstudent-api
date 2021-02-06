@@ -3,10 +3,17 @@ const User = require("../model/User");
 const Code = require("../model/Code");
 const bCrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { registerValidation, loginValidation } = require("../validation");
+const {
+  registerValidation,
+  loginValidation,
+  codeValidation,
+} = require("../validation");
 
 // ! Add Activaton Code
 router.post("/addcode", async (req, res) => {
+  const { error } = codeValidation(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
   const code = new Code({
     value: req.body.value.trim(),
   });

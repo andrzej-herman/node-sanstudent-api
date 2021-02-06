@@ -5,7 +5,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 // ! IMPORT ROUTES
 const authRouter = require("./routes/auth");
-const studentRouter = require("./routes/students");
+const studentRouter = require("./routes/student");
+const seasonRouter = require("./routes/season");
 
 // ! ENVIRONMENT VARIABLES
 dotenv.config();
@@ -24,9 +25,12 @@ app.use(express.json());
 app.use(cors());
 
 // ! ROUTE MIDDLEWARE
-app.use("/api/user", authRouter);
-app.use("/api/student", studentRouter);
+app.use("/auth", authRouter);
+app.use("/student", studentRouter);
+app.use("/season", seasonRouter);
 
 // ! LISTEN
 const port = process.env.PORT || 5000;
-app.listen(port, () => console.log(`Server is running on port ${[port]}`));
+app.listen(port, () =>
+  console.log(`Server is running on port at http://localhost:${[port]}`)
+);
