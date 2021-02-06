@@ -82,10 +82,7 @@ router.post("/login", async (req, res) => {
         if (!result) return res.status(400).send("INVALID_LOGIN_ATTEMPT");
         else {
           // Create and assign a token
-          const token = jwt.sign(
-            { _id: user._id },
-            "z4PMjqqgQB0KEWyEB0GxQwSkiQjxbN8mfzr8wL7iWXon7k1IfAyyXvxdaoP18UeNFSWPPPsrbOwmW9zq"
-          );
+          const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
           res.header("sanstudent-auth-token", token).send(token);
         }
       });

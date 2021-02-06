@@ -12,7 +12,7 @@ dotenv.config();
 
 // ! DB CONNECTION
 mongoose.connect(
-  "mongodb+srv://aherman:cmcSoft@sanstudent.i8gbc.mongodb.net/sanstudent-api?retryWrites=true&w=majority",
+  process.env.DB_CONNECT,
   { useNewUrlParser: true, useUnifiedTopology: true },
   () => {
     console.log("Connected to Database");
