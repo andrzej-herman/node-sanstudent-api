@@ -90,7 +90,11 @@ router.post("/login", async (req, res) => {
         else {
           // Create and assign a token
           const token = jwt.sign({ _id: user._id }, process.env.TOKEN_SECRET);
-          res.header("sanstudent-auth-token", token).send(token);
+          const response = {
+            token: token,
+            id: user._id,
+          };
+          res.header("sanstudent-auth-token", token).send(response);
         }
       });
   }
