@@ -7,6 +7,7 @@ const cors = require("cors");
 const authRouter = require("./routes/auth");
 const studentRouter = require("./routes/student");
 const seasonRouter = require("./routes/season");
+const subjectRouter = require("./routes/subject");
 
 // ! ENVIRONMENT VARIABLES
 dotenv.config();
@@ -28,6 +29,7 @@ app.use(cors());
 app.use("/auth", authRouter);
 app.use("/student", studentRouter);
 app.use("/season", seasonRouter);
+app.use("/subject", subjectRouter);
 
 // ! LISTEN
 const port = process.env.PORT || 5000;

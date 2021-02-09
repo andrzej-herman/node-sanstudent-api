@@ -41,7 +41,18 @@ const seasonValidation = (data) => {
   return validation;
 };
 
+// ! SUBJECT
+const subjectValidation = (data) => {
+  const schema = Joi.object({
+    name: Joi.string().required(),
+    semester: Joi.number().required(),
+  });
+  const validation = schema.validate(data);
+  return validation;
+};
+
 module.exports.registerValidation = registerValidation;
 module.exports.loginValidation = loginValidation;
 module.exports.codeValidation = codeValidation;
 module.exports.seasonValidation = seasonValidation;
+module.exports.subjectValidation = subjectValidation;

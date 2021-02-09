@@ -8,6 +8,7 @@ const {
   loginValidation,
   codeValidation,
 } = require("../validation");
+const { getInitials } = require("../helpers/authHelper");
 
 // ! Add Activaton Code
 router.post("/addcode", async (req, res) => {
@@ -93,6 +94,7 @@ router.post("/login", async (req, res) => {
           const response = {
             token: token,
             id: user._id,
+            initials: getInitials(user),
           };
           res.header("sanstudent-auth-token", token).send(response);
         }

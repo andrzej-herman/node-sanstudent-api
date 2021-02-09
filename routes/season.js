@@ -2,6 +2,7 @@ const router = require("express").Router();
 const protected = require("../verifyToken");
 const Season = require("../model/Season");
 const { seasonValidation } = require("../validation");
+const { getSeasons, getSeason } = require("../helpers/seasonHelper");
 
 // ! Add Season
 router.post("/addseason", protected, async (req, res) => {
@@ -23,10 +24,22 @@ router.post("/addseason", protected, async (req, res) => {
 
 // ! GetSeasons
 router.get("/seasons", protected, async (req, res) => {
-  const seasons = await Season.find()
+  await Season.find()
     .exec()
     .then((data) => {
-      res.json(data);
+      const seasons = getSeasons(data);
+      res.json(seasons);
+    });
+});
+
+// ! Get Season By Id
+router.get("/seasons/:id", protected, async (req, res) => {
+  var id = req.params.id;
+  await Season.findOne({ _id: id })
+    .exec()
+    .then((data) => {
+      const season = getSeason(data);
+      res.json(season);
     });
 });
 
