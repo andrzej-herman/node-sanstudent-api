@@ -8,6 +8,7 @@ const authRouter = require("./routes/auth");
 const studentRouter = require("./routes/student");
 const seasonRouter = require("./routes/season");
 const subjectRouter = require("./routes/subject");
+const groupRouter = require("./routes/group");
 
 // ! ENVIRONMENT VARIABLES
 dotenv.config();
@@ -30,6 +31,7 @@ app.use("/auth", authRouter);
 app.use("/student", studentRouter);
 app.use("/season", seasonRouter);
 app.use("/subject", subjectRouter);
+app.use("/group", groupRouter);
 
 // ! LISTEN
 const port = process.env.PORT || 5000;
